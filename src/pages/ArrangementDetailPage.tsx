@@ -1,10 +1,41 @@
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Star, Check, Clock, Users, MapPin, ArrowLeft, Calendar, Phone } from 'lucide-react';
 import { ARRANGEMENTS, COMPANY } from '../lib/constants';
+import { Lightbox } from '../components/Lightbox';
+
+const atmospherePhotos = [
+  {
+    src: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1216/slideshow_2x_Diner_op_een_boot_in_Amsterdam.jpg',
+    alt: 'Diner aan boord'
+  },
+  {
+    src: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1116/slideshow_2x_Borrel_op_boot_in_Amsterdam.jpg',
+    alt: 'Borrel op boot'
+  },
+  {
+    src: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1142/slideshow_2x_Buffet_op_een_boot_in_Amsterdam.jpg',
+    alt: 'Buffet op boot'
+  },
+  {
+    src: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1158/slideshow_2x_11406636_832146906841301_831726696146516709_n.png',
+    alt: 'Gezellige sfeer aan boord'
+  },
+  {
+    src: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1216/slideshow_2x_Diner_op_een_boot_in_Amsterdam.jpg',
+    alt: 'Amsterdamse grachten'
+  },
+  {
+    src: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1116/slideshow_2x_Borrel_op_boot_in_Amsterdam.jpg',
+    alt: 'Bedrijfsuitje op boot'
+  }
+];
 
 export function ArrangementDetailPage() {
   const { id } = useParams<{ id: string }>();
   const arrangement = ARRANGEMENTS.find(a => a.id === id);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
 
   if (!arrangement) {
     return (
@@ -146,35 +177,18 @@ export function ArrangementDetailPage() {
                 {/* Atmosphere Photos */}
                 <div className="mt-12">
                   <h3 className="text-2xl font-bold text-[#1a365d] mb-6">Sfeerimpressie</h3>
+                  <p className="text-gray-600 mb-4">Klik op een foto om deze groter te bekijken</p>
                   
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    {[
-                      {
-                        src: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1216/slideshow_2x_Diner_op_een_boot_in_Amsterdam.jpg',
-                        alt: 'Diner aan boord'
-                      },
-                      {
-                        src: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1116/slideshow_2x_Borrel_op_boot_in_Amsterdam.jpg',
-                        alt: 'Borrel op boot'
-                      },
-                      {
-                        src: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1142/slideshow_2x_Buffet_op_een_boot_in_Amsterdam.jpg',
-                        alt: 'Buffet op boot'
-                      },
-                      {
-                        src: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1158/slideshow_2x_11406636_832146906841301_831726696146516709_n.png',
-                        alt: 'Gezellige sfeer aan boord'
-                      },
-                      {
-                        src: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1216/slideshow_2x_Diner_op_een_boot_in_Amsterdam.jpg',
-                        alt: 'Amsterdamse grachten'
-                      },
-                      {
-                        src: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1116/slideshow_2x_Borrel_op_boot_in_Amsterdam.jpg',
-                        alt: 'Bedrijfsuitje op boot'
-                      }
-                    ].map((photo, index) => (
-                      <div key={index} className="group relative aspect-square overflow-hidden rounded-xl">
+                    {atmospherePhotos.map((photo, index) => (
+                      <button
+                        key={index}
+                        onClick={() => {
+                          setLightboxIndex(index);
+                          setLightboxOpen(true);
+                        }}
+                        className="group relative aspect-square overflow-hidden rounded-xl cursor-pointer"
+                      >
                         <img
                           src={photo.src}
                           alt={photo.alt}
@@ -183,11 +197,23 @@ export function ArrangementDetailPage() {
                             (e.target as HTMLImageElement).src = 'https://production-bha.b-cdn.net//uploads/page_section/photo/1216/slideshow_2x_Diner_op_een_boot_in_Amsterdam.jpg';
                           }}
                         />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
-                      </div>
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                          <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity font-medium">
+                            Vergroot
+                          </span>
+                        </div>
+                      </button>
                     ))}
                   </div>
                 </div>
+
+                {/* Lightbox */}
+                <Lightbox
+                  images={atmospherePhotos}
+                  initialIndex={lightboxIndex}
+                  isOpen={lightboxOpen}
+                  onClose={() => setLightboxOpen(false)}
+                />
               </div>
             </div>
 

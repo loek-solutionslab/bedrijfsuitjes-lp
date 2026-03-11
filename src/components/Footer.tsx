@@ -14,7 +14,7 @@ export function Footer() {
             <img
               src={COMPANY.logoLong}
               alt={COMPANY.name}
-              className="h-12 w-auto mb-6 brightness-0 invert"
+              className="h-12 w-auto mb-6"
             />
             
             <div className="space-y-3 text-gray-300">
