@@ -142,6 +142,52 @@ export function ArrangementDetailPage() {
                     Zo heeft u genoeg tijd om te genieten van het eten en de mooie grachten van Amsterdam.
                   </p>
                 </div>
+
+                {/* Atmosphere Photos */}
+                <div className="mt-12">
+                  <h3 className="text-2xl font-bold text-[#1a365d] mb-6">Sfeerimpressie</h3>
+                  
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    {[
+                      {
+                        src: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1216/slideshow_2x_Diner_op_een_boot_in_Amsterdam.jpg',
+                        alt: 'Diner aan boord'
+                      },
+                      {
+                        src: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1116/slideshow_2x_Borrel_op_boot_in_Amsterdam.jpg',
+                        alt: 'Borrel op boot'
+                      },
+                      {
+                        src: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1142/slideshow_2x_Buffet_op_een_boot_in_Amsterdam.jpg',
+                        alt: 'Buffet op boot'
+                      },
+                      {
+                        src: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1158/slideshow_2x_11406636_832146906841301_831726696146516709_n.png',
+                        alt: 'Gezellige sfeer aan boord'
+                      },
+                      {
+                        src: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1216/slideshow_2x_Diner_op_een_boot_in_Amsterdam.jpg',
+                        alt: 'Amsterdamse grachten'
+                      },
+                      {
+                        src: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1116/slideshow_2x_Borrel_op_boot_in_Amsterdam.jpg',
+                        alt: 'Bedrijfsuitje op boot'
+                      }
+                    ].map((photo, index) => (
+                      <div key={index} className="group relative aspect-square overflow-hidden rounded-xl">
+                        <img
+                          src={photo.src}
+                          alt={photo.alt}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src = 'https://production-bha.b-cdn.net//uploads/page_section/photo/1216/slideshow_2x_Diner_op_een_boot_in_Amsterdam.jpg';
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
 
