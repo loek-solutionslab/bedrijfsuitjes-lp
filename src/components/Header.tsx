@@ -52,14 +52,14 @@ export function Header() {
           <a
             href="/"
             onClick={handleLogoClick}
-            className="flex items-center"
+            className={`flex items-center p-2 rounded-lg transition-all ${
+              isHomePage && !isScrolled ? 'bg-white/90 backdrop-blur-sm' : ''
+            }`}
           >
             <img
               src={COMPANY.logoShort}
               alt={COMPANY.name}
-              className={`h-10 md:h-12 w-auto transition-all ${
-                isHomePage && !isScrolled ? 'brightness-0 invert' : ''
-              }`}
+              className="h-10 md:h-12 w-auto"
             />
           </a>
 
