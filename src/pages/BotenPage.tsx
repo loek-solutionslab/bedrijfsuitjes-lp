@@ -1,65 +1,14 @@
-import { Ship, Users, Star, Check } from 'lucide-react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { COMPANY } from '../lib/constants';
-
-const BOATS = [
-  {
-    id: 1,
-    name: 'Salonboot De Amsterdam',
-    type: 'Salonboot',
-    capacity: '20-40 personen',
-    features: ['Overdekt', 'Verwarming', 'Bar aan boord', 'Geluidsinstallatie'],
-    image: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1216/slideshow_2x_Diner_op_een_boot_in_Amsterdam.jpg',
-    popular: true
-  },
-  {
-    id: 2,
-    name: 'Rondvaartboot De IJ',
-    type: 'Rondvaartboot',
-    capacity: '60-100 personen',
-    features: ['Overdekt', ' panoramadek', 'Catering mogelijk', 'A/V apparatuur'],
-    image: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1116/slideshow_2x_Borrel_op_boot_in_Amsterdam.jpg',
-    popular: false
-  },
-  {
-    id: 3,
-    name: 'Sloep De Gracht',
-    type: 'Sloep',
-    capacity: '8-12 personen',
-    features: ['Open', 'Gezellig', 'Intiem', 'Flexibel'],
-    image: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1142/slideshow_2x_Buffet_op_een_boot_in_Amsterdam.jpg',
-    popular: false
-  },
-  {
-    id: 4,
-    name: 'Luxe Salonboot De Keizer',
-    type: 'Luxury Salonboot',
-    capacity: '30-50 personen',
-    features: ['VIP ruimte', 'Volledig ingericht', 'Horeca aan boord', 'Airco'],
-    image: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1158/slideshow_2x_11406636_832146906841301_831726696146516709_n.png',
-    popular: true
-  },
-  {
-    id: 5,
-    name: 'Partyboot De Dansvloer',
-    type: 'Partyboot',
-    capacity: '80-150 personen',
-    features: ['Dansvloer', 'DJ booth', 'Lichtinstallatie', 'Bar'],
-    image: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1216/slideshow_2x_Diner_op_een_boot_in_Amsterdam.jpg',
-    popular: true
-  },
-  {
-    id: 6,
-    name: 'Vergaderboot De Boardroom',
-    type: 'Vergaderboot',
-    capacity: '15-25 personen',
-    features: ['Beamer', 'Scherm', 'Wifi', 'Catering'],
-    image: 'https://production-bha.b-cdn.net//uploads/page_section/photo/1116/slideshow_2x_Borrel_op_boot_in_Amsterdam.jpg',
-    popular: false
-  }
-];
+import { Ship, Users, Star, Check } from 'lucide-react';
+import { BOATS, COMPANY } from '../lib/constants';
+import { Lightbox } from '../components/Lightbox';
 
 export function BotenPage() {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [lightboxImages, setLightboxImages] = useState<{ src: string; alt: string }[]>([]);
+
   return (
     <div className="pt-20">
       {/* Hero */}
@@ -85,9 +34,7 @@ export function BotenPage() {
               'Alle boten',
               '2-20 personen',
               '20-60 personen',
-              '60+ personen',
-              'Met catering',
-              'Vergaderen'
+              '60+ personen'
             ].map((filter, index) => (
               <button
                 key={index}
@@ -114,9 +61,10 @@ export function BotenPage() {
                 className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all"
               >
                 {/* Image */}
-                <div className="relative h-56 overflow-hidden">
+                <div className="relative h-56 overflow-hidden"
+                >
                   <img
-                    src={boat.image}
+                    src={boat.images[0]}
                     alt={boat.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -129,9 +77,20 @@ export function BotenPage() {
                     </div>
                   )}
                   
+                  <button
+                    onClick={() => {
+                      setLightboxImages(boat.images.map(img => ({ src: img, alt: boat.name })));
+                      setLightboxIndex(0);
+                      setLightboxOpen(true);
+                    }}
+                    className="absolute top-4 right-4 p-2 bg-black/50 hover:bg-black/70 text-white rounded-lg transition-colors"
+                  >
+                    <span className="text-sm">{boat.images.length} foto's</span>
+                  </button>
+                  
                   <div className="absolute bottom-4 right-4 flex items-center gap-1 bg-white/90 px-3 py-1 rounded-full">
                     <Users className="w-4 h-4 text-[#3182ce]" />
-                    <span className="text-sm font-medium">{boat.capacity}</span>
+                    <span className="text-sm font-medium">Max {boat.capacity}</span>
                   </div>
                 </div>
 
@@ -142,12 +101,20 @@ export function BotenPage() {
                     <span className="text-sm text-gray-500">{boat.type}</span>
                   </div>
                   
-                  <h3 className="text-xl font-bold text-[#1a365d] mb-4">
+                  <div className="flex items-center gap-1 mb-3">
+                    <Star className="w-4 h-4 text-[#f6e05e] fill-current" />
+                    <span className="text-sm font-medium">{boat.rating}</span>
+                    <span className="text-sm text-gray-500">({boat.reviewCount})</span>
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-[#1a365d] mb-2">
                     {boat.name}
                   </h3>
 
+                  <p className="text-gray-600 mb-4 line-clamp-2">{boat.description}</p>
+
                   <div className="space-y-2 mb-6">
-                    {boat.features.map((feature, index) => (
+                    {boat.features.slice(0, 3).map((feature, index) => (
                       <div key={index} className="flex items-center gap-2">
                         <Check className="w-4 h-4 text-green-500" />
                         <span className="text-gray-600 text-sm">{feature}</span>
@@ -155,18 +122,36 @@ export function BotenPage() {
                     ))}
                   </div>
 
-                  <Link
-                    to="/contact"
-                    className="block w-full bg-[#3182ce] text-white text-center py-3 rounded-lg font-semibold hover:bg-[#2c5aa0] transition-colors"
-                  >
-                    Offerte aanvragen
-                  </Link>
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <div>
+                      <span className="text-sm text-gray-500">Vanaf</span>
+                      <div className="text-2xl font-bold text-[#1a365d]">
+                        €{boat.pricePerHour}
+                        <span className="text-sm font-normal text-gray-500">/uur</span>
+                      </div>
+                    </div>
+                    
+                    <Link
+                      to={`/boten/${boat.id}`}
+                      className="bg-[#3182ce] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#2c5aa0] transition-colors"
+                    >
+                      Details
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Lightbox */}
+      <Lightbox
+        images={lightboxImages}
+        initialIndex={lightboxIndex}
+        isOpen={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+      />
 
       {/* CTA */}
       <section className="py-20 bg-[#1a365d]">

@@ -205,3 +205,150 @@ export const META = {
   title: "Bedrijfsuitje Amsterdam? Boot huren met catering | 2-200 personen",
   description: "Organiseer het perfecte bedrijfsuitje op de Amsterdamse grachten. 38 luxe boten, 10 arrangementen, 2-200 personen. Offerte aanvragen →"
 };
+
+export const BOATS = [
+  {
+    id: "ondine",
+    name: "Ondine",
+    type: "Salonboot",
+    capacity: 30,
+    minCapacity: 2,
+    pricePerHour: 285,
+    rating: 4.8,
+    reviewCount: 695,
+    description: "Elegante salonboot met veel ruimte en comfort. Perfect voor diners en borrels.",
+    features: ["Overdekt", "Verwarming", "Bar aan boord", "Geluidsinstallatie", "Toilet"],
+    images: [
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1216/slideshow_2x_Diner_op_een_boot_in_Amsterdam.jpg",
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1116/slideshow_2x_Borrel_op_boot_in_Amsterdam.jpg",
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1142/slideshow_2x_Buffet_op_een_boot_in_Amsterdam.jpg"
+    ],
+    popular: true
+  },
+  {
+    id: "hrh",
+    name: "HRH",
+    type: "Salonboot",
+    capacity: 36,
+    minCapacity: 2,
+    pricePerHour: 285,
+    rating: 4.7,
+    reviewCount: 356,
+    description: "Klassieke salonboot met moderne uitstraling. Geschikt voor alle gelegenheden.",
+    features: ["Overdekt", "Verwarming", "Muziekinstallatie", "Toilet", "Dansvloer"],
+    images: [
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1216/slideshow_2x_Diner_op_een_boot_in_Amsterdam.jpg",
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1158/slideshow_2x_11406636_832146906841301_831726696146516709_n.png",
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1116/slideshow_2x_Borrel_op_boot_in_Amsterdam.jpg"
+    ],
+    popular: true
+  },
+  {
+    id: "bota-fogo",
+    name: "Bota Fogo",
+    type: "Salonboot",
+    capacity: 90,
+    minCapacity: 20,
+    pricePerHour: 336,
+    rating: 4.9,
+    reviewCount: 407,
+    description: "Ruime salonboot voor grote gezelschappen. Ideaal voor feesten en evenementen.",
+    features: ["Overdekt", "Panoramadek", "Bar", "Geluidsinstallatie", "Toiletten", "Keuken"],
+    images: [
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1142/slideshow_2x_Buffet_op_een_boot_in_Amsterdam.jpg",
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1216/slideshow_2x_Diner_op_een_boot_in_Amsterdam.jpg",
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1116/slideshow_2x_Borrel_op_boot_in_Amsterdam.jpg"
+    ],
+    popular: true
+  },
+  {
+    id: "anna-maria",
+    name: "Anna Maria",
+    type: "Salonboot",
+    capacity: 60,
+    minCapacity: 10,
+    pricePerHour: 323,
+    rating: 4.8,
+    reviewCount: 371,
+    description: "Sfeervolle salonboot met authentieke uitstraling. Perfect voor middelgrote groepen.",
+    features: ["Overdekt", "Houten interieur", "Bar", "Muziekinstallatie", "Toilet"],
+    images: [
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1216/slideshow_2x_Diner_op_een_boot_in_Amsterdam.jpg",
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1158/slideshow_2x_11406636_832146906841301_831726696146516709_n.png",
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1142/slideshow_2x_Buffet_op_een_boot_in_Amsterdam.jpg"
+    ],
+    popular: false
+  },
+  {
+    id: "marie-zurlohe",
+    name: "Marie Zurlohe",
+    type: "Salonboot",
+    capacity: 12,
+    minCapacity: 2,
+    pricePerHour: 275,
+    rating: 4.9,
+    reviewCount: 397,
+    description: "Intieme salonboot voor kleine gezelschappen. Zeer geschikt voor privé diners.",
+    features: ["Overdekt", "Verwarming", "Privacy", "Muziekinstallatie", "Toilet"],
+    images: [
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1216/slideshow_2x_Diner_op_een_boot_in_Amsterdam.jpg",
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1116/slideshow_2x_Borrel_op_boot_in_Amsterdam.jpg",
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1158/slideshow_2x_11406636_832146906841301_831726696146516709_n.png"
+    ],
+    popular: false
+  },
+  {
+    id: "roerdomp",
+    name: "Roerdomp",
+    type: "Salonboot",
+    capacity: 12,
+    minCapacity: 2,
+    pricePerHour: 295,
+    rating: 4.6,
+    reviewCount: 81,
+    description: "Charmante kleine salonboot met veel karakter. Ideaal voor intieme bijeenkomsten.",
+    features: ["Overdekt", "Authentiek", "Verwarming", "Muziekinstallatie"],
+    images: [
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1216/slideshow_2x_Diner_op_een_boot_in_Amsterdam.jpg",
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1142/slideshow_2x_Buffet_op_een_boot_in_Amsterdam.jpg",
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1116/slideshow_2x_Borrel_op_boot_in_Amsterdam.jpg"
+    ],
+    popular: false
+  },
+  {
+    id: "dyos",
+    name: "Dyos",
+    type: "Salonboot",
+    capacity: 40,
+    minCapacity: 5,
+    pricePerHour: 310,
+    rating: 4.7,
+    reviewCount: 30,
+    description: "Moderne salonboot met veel licht en ruimte. Perfect voor zakelijke evenementen.",
+    features: ["Overdekt", "Panoramaramen", "Airco", "Geluidsinstallatie", "Toiletten"],
+    images: [
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1216/slideshow_2x_Diner_op_een_boot_in_Amsterdam.jpg",
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1158/slideshow_2x_11406636_832146906841301_831726696146516709_n.png",
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1142/slideshow_2x_Buffet_op_een_boot_in_Amsterdam.jpg"
+    ],
+    popular: false
+  },
+  {
+    id: "watertoerist",
+    name: "Watertoerist",
+    type: "Rondvaartboot",
+    capacity: 45,
+    minCapacity: 10,
+    pricePerHour: 315,
+    rating: 4.5,
+    reviewCount: 24,
+    description: "Klassieke rondvaartboot met open en overdekt dek. Ideaal voor grotere groepen.",
+    features: ["Open bovendek", "Overdekt benedendek", "Panoramadek", "Toiletten", "Bar"],
+    images: [
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1142/slideshow_2x_Buffet_op_een_boot_in_Amsterdam.jpg",
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1116/slideshow_2x_Borrel_op_boot_in_Amsterdam.jpg",
+      "https://production-bha.b-cdn.net//uploads/page_section/photo/1216/slideshow_2x_Diner_op_een_boot_in_Amsterdam.jpg"
+    ],
+    popular: false
+  }
+];
